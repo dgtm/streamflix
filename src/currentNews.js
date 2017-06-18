@@ -18,11 +18,11 @@ class CurrentNews extends Component {
           </p>
 
           <p>
-Medulla is a musical project founded in Austin Texas and based in Berlin Germany since 2014. Intent on creating and sharing a musical experience that is truly unique, Medulla writes, records, and performs music of emotional depth and intellectual sophistication.
+A musical project founded in Austin Texas and based in Berlin Germany since 2014. Intent on creating and sharing a musical experience that is truly unique, Medulla writes, records, and performs music of emotional depth and intellectual sophistication.
           </p>
 
           <div className="button-wrapper">
-            <HeroButton primary={true} text="Get Free Tickets" onClick={this.props.onClick}/>
+            <HeroButton primary={true} text="Get Free Tickets" onClick={this.props.playVideo}/>
             <HeroButton primary={false} text="+ Interested" onClick={() => this.setState({showEmailInput: true})}/>
           </div>
           <EmailLinkInput displayIf={this.state.showEmailInput} />
@@ -60,7 +60,6 @@ class EmailLinkInput extends Component {
 
   }
   render() {
-
     if (this.props.displayIf) {
       return (
         <div className="email-input">
@@ -79,9 +78,12 @@ class EmailLinkInput extends Component {
 }
 
 var HeroButton = React.createClass({
+  playShit: function() {
+    this.props.onClick()
+  },
   render: function() {
     return (
-        <a href="#" className="Button" data-primary={this.props.primary} onClick={this.props.onClick}>{this.props.text}</a>
+        <a href="#" className="Button" data-primary={this.props.primary} onClick={this.playShit}>{this.props.text}</a>
     );
   }
 })
