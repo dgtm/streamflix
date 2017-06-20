@@ -5,7 +5,6 @@ import './App.css';
 import Player from './player.js'
 import CurrentNews from './currentNews.js'
 class App extends Component {
-
   constructor() {
     super()
     this.state = {searchTerm: '', searchUrl: '', showPlayer: false, url: ''}
@@ -24,7 +23,7 @@ class App extends Component {
   playerContent() {
     if (this.state.showPlayer) {
       return (<div className="content">
-        <Player showPlayer={this.state.showPlayer} url={this.state.url}/>
+        <Player showPlayer={this.state.showPlayer} url={this.state.url} hidePlayer={() => this.setState({showPlayer: false})}/>
       </div>);
     }
     else {
@@ -42,9 +41,9 @@ class App extends Component {
         <div id="navigation" className="Navigation">
           <nav>
             <ul>
+              <li>Home</li>
               <li onClick={this.scrollTo.bind(this,this.refs.archives)}>Archives</li>
               <li onClick={this.scrollTo.bind(this,this.upcoming)}>Upcoming</li>
-              <li>Subscribe</li>
             </ul>
           </nav>
         </div>
@@ -170,7 +169,9 @@ var UserProfile = React.createClass({
       <div className="UserProfile">
         <div className="User">
           <div className="name"></div>
-          <div className="image"><img src={this.props.img} alt="profile" /></div>
+          <div className="image"><a href="https://www.facebook.com/Boiling-Head-Productions-1932856026944120" target="_blank">
+          <img src={this.props.img} alt="profile" /></a>
+          </div>
         </div>
       </div>
     );

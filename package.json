@@ -2,9 +2,10 @@
   "name": "netflix",
   "version": "0.1.0",
   "private": true,
-  "homepage" : "http://dgtm.github.io/streamflix",
+  "homepage": "http://dgtm.github.io/streamflix",
   "dependencies": {
     "babel-preset-es2015": "^6.24.1",
+    "classnames": "^2.2.5",
     "eslint": "^3.19.0",
     "global": "^4.3.2",
     "image-loader": "^0.0.1",

@@ -310,6 +310,13 @@ p {
   -webkit-transform: rotate(180deg);
           transform: rotate(180deg);
 }
+.Back {
+  border-radius: 3px;
+  background: #e50914;
+  cursor: pointer;
+  width: 40px;
+  padding: 4px;
+}
 
 .Button {
   background: transparent;
@@ -346,7 +353,9 @@ p {
 .Button[data-primary='true']:hover {
   background: #e50914;
 }
-
+.btn-action-done {
+  background: brown;
+}
 .Hero {
   margin-bottom: -15vw;
 

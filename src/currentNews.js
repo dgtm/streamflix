@@ -2,10 +2,15 @@ import React, { Component}  from 'react';
 import ReactPlayer from 'react-player'
 import PouchDB from 'pouchdb';
 import uuid from 'uuid';
+import classNames from 'classnames';
 class CurrentNews extends Component {
   constructor (){
     super();
-    this.state = { showEmailInput: false };
+    this.state = { showEmailInput: false, sentEmail: false };
+  }
+  emailSent(){
+    this.setState({showEmailInput: false});
+    this.setState({sentEmail: true});
   }
   render () {
     return (
@@ -14,7 +19,7 @@ class CurrentNews extends Component {
           <img className="logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwSCOqVBbGncXNlieE3wdigQVtc2Afj5KG8b5MbF6CNemEix4fPg" alt="today" />
           <p>
           <br />
-          <h2>July 14 from 2 PM EDT</h2>
+          <h2>// July 14 // 17:00 EDT // </h2>
           </p>
 
           <p>
@@ -22,10 +27,11 @@ A musical project founded in Austin Texas and based in Berlin Germany since 2014
           </p>
 
           <div className="button-wrapper">
-            <HeroButton primary={true} text="Get Free Tickets" onClick={this.props.playVideo}/>
-            <HeroButton primary={false} text="+ Interested" onClick={() => this.setState({showEmailInput: true})}/>
+            <HeroButton primary={true} text="Watch Now" onClick={this.props.playVideo}/>
+            <HeroButton primary={false} text="+ Interested" onClick={() => this.setState({showEmailInput: true})} done={this.state.sentEmail} />
           </div>
-          <EmailLinkInput displayIf={this.state.showEmailInput} />
+          <EmailLinkInput displayIf={this.state.showEmailInput} hideMe={this.emailSent.bind(this)}/>
+
         </div>
         <div className="overlay"></div>
       </div>
@@ -56,6 +62,7 @@ class EmailLinkInput extends Component {
   handleKeyPress(e) {
     if (e.key === 'Enter') {
       this.saveEmail(e.target.value);
+      this.props.hideMe();
     }
 
   }
@@ -63,12 +70,12 @@ class EmailLinkInput extends Component {
     if (this.props.displayIf) {
       return (
         <div className="email-input">
-          <input type="text" placeholder="Your Email" onKeyPress={this.handleKeyPress.bind(this)}>
+          <input autoFocus type="text" placeholder="Your Email" onKeyPress={this.handleKeyPress.bind(this)}>
           </input>
         </div>);
     } else {
       if (this.state.sentEmail) {
-        return <div>Sent Email</div>;
+        return <div>We will be sending you an email an hour before the actual event</div>;
       } else {
         return(<div></div>);
       }
@@ -82,8 +89,13 @@ var HeroButton = React.createClass({
     this.props.onClick()
   },
   render: function() {
+    var btnClass = classNames({
+      'Button': true,
+      'btn-action-done': this.props.done
+    });
+
     return (
-        <a href="#" className="Button" data-primary={this.props.primary} onClick={this.playShit}>{this.props.text}</a>
+        <a href="#" className={btnClass} data-primary={this.props.primary} onClick={this.playShit}>{this.props.text}</a>
     );
   }
 })
