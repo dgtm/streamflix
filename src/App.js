@@ -31,7 +31,7 @@ class App extends Component {
     }
   }
   scrollTo(elem) {
-    const node = ReactDOM.findDOMNode(this.refs.archives);
+    const node = ReactDOM.findDOMNode(elem);
     node.scrollIntoView({ behavior: "smooth" });
   }
   render() {
@@ -42,8 +42,8 @@ class App extends Component {
           <nav>
             <ul>
               <li>Home</li>
-              <li onClick={this.scrollTo.bind(this,this.refs.archives)}>Archives</li>
-              <li onClick={this.scrollTo.bind(this,this.upcoming)}>Upcoming</li>
+              <li onClick={() => this.scrollTo(this.refs.archives)}>Archives</li>
+              <li onClick={() => this.scrollTo(this.refs.upcoming)}>Upcoming</li>
             </ul>
           </nav>
         </div>
