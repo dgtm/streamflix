@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import logo from './logo.svg';
-import './App.css';
+import logo from '../logo.svg';
+import '../App.css';
 import Player from './player.js'
 import CurrentNews from './currentNews.js'
+
 class App extends Component {
   constructor() {
     super()
@@ -12,7 +13,11 @@ class App extends Component {
   handleChange(e) {
     this.setState({ searchTerm: e.target.value, searchUrl: "http://myservice/?search=" + this.state.searchTerm })
   }
-
+  // mapStateToProps(state) {
+  //   {
+  //     defaultLink: state.defaultUri
+  //   }
+  // }
   displayVideo(url) {
     if (url==undefined) {
       url = "https://www.youtube.com/watch?v=ysz5S6PUM-U"

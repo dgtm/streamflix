@@ -18,6 +18,7 @@ class Player extends Component {
 }
 
 class Back extends Component {
+
   render () {
     return (
     <div onClick={this.props.onClick} className="Back">Back</div>
